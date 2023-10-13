@@ -7,12 +7,18 @@ import Homepage from './module/HomeBody/Homepage.jsx';
 import SignUp from './module/auth/SignUp/SignUp.jsx';
 import About from './module/About/About.jsx';
 import Contact  from './module/Contact/Contact.jsx';
+import SignIn  from './module/auth/SignIn/SignIn.jsx';
 
 const routes = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      {
+        path: '/',
+        element: <Homepage />
+
+      },
       {
         path: '/home',
         element: <Homepage />
@@ -28,6 +34,10 @@ const routes = createBrowserRouter([
       {
         path: '/Contact',
         element: <Contact />
+      },
+      {
+        path: '/LogIn',
+        element: <SignIn />
       }
     ]
   }
