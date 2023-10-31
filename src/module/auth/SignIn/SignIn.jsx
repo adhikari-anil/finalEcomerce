@@ -1,36 +1,51 @@
 import React, { useEffect } from "react";
-import { ArrowRight, LogIn } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useFormik } from "formik";
-import { object, string ,ref } from "yup";
+import { object, string, ref } from "yup";
+import axios from 'axios';
+import { useContext } from "react";
+import { AuthContext } from "../../../context/auth/AuthContext";
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignIn = () => {
+  const {logIn} = useContext(AuthContext)
+  let userSchema = object({
+    email: string().required().email(),
+    password: string().required().min(6),
+  });
 
-    let userSchema = object({
-        name: string().required(),
-        email: string().required().email(),
-        password: string().required().min(6),
-        confirmPassword: string().oneOf([ref('password'),null],"Password must match").required(),        
-    });
+  const formik = useFormik({
+    validationSchema: userSchema,
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (data) => {
+      //console.log(data);
+      signInApiCall(data);
+    },
+  });
 
-    const formik = useFormik({
-        validationSchema: userSchema,
-        initialValues:{
-            name: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-        },
-        onSubmit: (data)=>{
-            console.log(data);
-        }
-    })
+  const { errors, getFieldProps } = formik;
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
-    const { errors , getFieldProps} = formik;
-    useEffect(()=>{
-        console.log(errors);    
-    },[errors])
-    
-  return (
+  const signInApiCall = (data) => {
+    console.log(apiUrl);
+    axios
+      .post(`${apiUrl}/api/users/SignIn`, data)
+      .then((res) => {
+        console.log(res.data);
+        logIn(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return ( 
     <section>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -54,14 +69,13 @@ const SignIn = () => {
                       type="email"
                       placeholder="Email"
                       id="email"
-                      {...getFieldProps('email')}
+                      {...getFieldProps("email")}
                     ></input>
-                    {
-                        errors.email &&
-                        <label className="text-sm text-red-700">
-                            {errors.email}
-                        </label>
-                    }
+                    {errors.email && (
+                      <label className="text-sm text-red-700">
+                        {errors.email}
+                      </label>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -79,14 +93,21 @@ const SignIn = () => {
                       type="password"
                       placeholder="Password"
                       id="password"
-                      {...getFieldProps('password')}
+                      {...getFieldProps("password")}
                     ></input>
-                    {
-                        errors.password&&
-                        <label className="text-sm text-red-700">
-                            {errors.password}
-                        </label>
-                    }
+                    {errors.password && (
+                      <label className="text-sm text-red-700">
+                        {errors.password}
+                      </label>
+                    )}
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      type="submit"
+                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                    >
+                      LogIn <ArrowRight className="ml-2" size={16} />
+                    </button>
                   </div>
                 </div>
               </div>

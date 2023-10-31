@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/auth/AuthContext";
 
 const menuItems = [
   {
@@ -18,10 +19,12 @@ const menuItems = [
 ];
 
 function Navbar() {
+  const {isAuthenticated,user,logOut} = useContext(AuthContext)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const navigate = useNavigate();                              //contain props of useNavigate..
+  const navigate = useNavigate(); //contain props of useNavigate..
 
-  const gotoPath = (path)=>{                              // function to navigate to the passed path...
+  const gotoPath = (path) => {
+    // function to navigate to the passed path...
     navigate(path);
   };
 
@@ -34,7 +37,60 @@ function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
-          <svg height='30' width='30' fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 481.882 481.882" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M435.229,332.883L45.739,332.6L4.691,396.433l471.495,0.342L435.229,332.883z M180.863,387.559l16.541-19.567 l86.109,0.063l16.511,19.591L180.863,387.559z"></path> </g> </g> <g> <g> <rect x="87.65" y="84.186" width="305.875" height="194.206"></rect> </g> </g> <g> <g> <path d="M427.527,45.801L53.858,45.53c-2.553-0.002-4.628,2.073-4.629,4.623l-0.194,266.842l382.921,0.278l0.194-266.841 C432.152,47.881,430.08,45.803,427.527,45.801z M409.061,286.314c-0.003,4.31-3.496,7.802-7.81,7.799l-321.486-0.233 c-4.314-0.003-7.802-3.5-7.799-7.81l0.152-209.812c0.003-4.31,3.497-7.802,7.811-7.799l321.486,0.233 c4.313,0.003,7.802,3.501,7.798,7.811L409.061,286.314z"></path> </g> </g> <g> <g> <path d="M0,412.038c1.314,5.69,4.367,20.318,11.483,23.977l464.863,0.338c4.278-3.876,5.355-17.228,5.536-23.964L0,412.038z"></path> </g> </g> </g></svg>
+            <svg
+              height="30"
+              width="30"
+              fill="#000000"
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 481.882 481.882"
+              xml:space="preserve"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <g>
+                  {" "}
+                  <g>
+                    {" "}
+                    <path d="M435.229,332.883L45.739,332.6L4.691,396.433l471.495,0.342L435.229,332.883z M180.863,387.559l16.541-19.567 l86.109,0.063l16.511,19.591L180.863,387.559z"></path>{" "}
+                  </g>{" "}
+                </g>{" "}
+                <g>
+                  {" "}
+                  <g>
+                    {" "}
+                    <rect
+                      x="87.65"
+                      y="84.186"
+                      width="305.875"
+                      height="194.206"
+                    ></rect>{" "}
+                  </g>{" "}
+                </g>{" "}
+                <g>
+                  {" "}
+                  <g>
+                    {" "}
+                    <path d="M427.527,45.801L53.858,45.53c-2.553-0.002-4.628,2.073-4.629,4.623l-0.194,266.842l382.921,0.278l0.194-266.841 C432.152,47.881,430.08,45.803,427.527,45.801z M409.061,286.314c-0.003,4.31-3.496,7.802-7.81,7.799l-321.486-0.233 c-4.314-0.003-7.802-3.5-7.799-7.81l0.152-209.812c0.003-4.31,3.497-7.802,7.811-7.799l321.486,0.233 c4.313,0.003,7.802,3.501,7.798,7.811L409.061,286.314z"></path>{" "}
+                  </g>{" "}
+                </g>{" "}
+                <g>
+                  {" "}
+                  <g>
+                    {" "}
+                    <path d="M0,412.038c1.314,5.69,4.367,20.318,11.483,23.977l464.863,0.338c4.278-3.876,5.355-17.228,5.536-23.964L0,412.038z"></path>{" "}
+                  </g>{" "}
+                </g>{" "}
+              </g>
+            </svg>
           </span>
           <span className="font-bold">Laptos</span>
         </div>
@@ -45,7 +101,7 @@ function Navbar() {
                 <a
                   href={item.href}
                   className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
-                  onClick={()=>gotoPath(`${item.href}`)}
+                  onClick={() => gotoPath(`${item.href}`)}
                 >
                   {item.name}
                   <span>
@@ -56,22 +112,35 @@ function Navbar() {
             ))}
           </ul>
         </div>
-        <div className="hidden space-x-2 lg:block">
-          <button
-            onClick={()=>gotoPath('/SignUp')}
-            type="button"
-            className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Sign Up
-          </button>
-          <button
-             onClick={()=>gotoPath('/LogIn')}
-            type="button"
-            className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Log In
-          </button>
-        </div>
+        {isAuthenticated ? (
+          <div className="hiden space-x-2 lg:block">
+            <span>{user.name}</span>
+            <button
+              onClick={logOut}
+              type="button"
+              className="rounded-md border border-yellow-600 px-3 py-2 text-sm font-semibold text-yellow-600 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600"
+            >
+              LogOut
+            </button>
+          </div>
+        ) : (
+          <div className="hidden space-x-2 lg:block">
+            <button
+              onClick={() => gotoPath("/SignUp")}
+              type="button"
+              className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
+              Sign Up
+            </button>
+            <button
+              onClick={() => gotoPath("/SignIn")}
+              type="button"
+              className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
+              Log In
+            </button>
+          </div>
+        )}
         <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
         </div>
@@ -128,14 +197,14 @@ function Navbar() {
                 </div>
                 <div className="mt-2 space-y-2">
                   <button
-                     onClick={()=>gotoPath('/SignUp')}
+                    onClick={() => gotoPath("/SignUp")}
                     type="button"
                     className="w-full rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
                     Sign Up
                   </button>
                   <button
-                     onClick={()=>gotoPath('/LogIn')}
+                    onClick={() => gotoPath("/SignIn")}
                     type="button"
                     className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
