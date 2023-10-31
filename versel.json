@@ -1,33 +1,28 @@
 {
   "routes": [
-    { "handle": "filesystem" },
     {
-      "src": "/",
-      "dest": "/forntend/src/App.jsx"
+      "path": "/",
+      "component": "Homepage"
     },
     {
-      "src": "/",
-      "dest": "/forntend/src/module/HomeBody/Homepage.jsx"
+      "path": "/home",
+      "component": "Homepage"
     },
     {
-      "src": "/home",
-      "dest": "/forntend/src/module/HomeBody/Homepage.jsx"
+      "path": "/SignUp",
+      "component": "SignUp"
     },
     {
-      "src": "/SignUp",
-      "dest": "/forntend/src/module/auth/SignUp/SignUp.jsx"
+      "path": "/About",
+      "component": "About"
     },
     {
-      "src": "/About",
-      "dest": "/forntend/src/module/About/About.jsx"
+      "path": "/Contact",
+      "component": "Contact"
     },
     {
-      "src": "/Contact",
-      "dest": "/forntend/src/module/Contact/Contact.jsx"
-    },
-    {
-      "src": "/SignIn",
-      "dest": "/forntend/src/module/auth/SignIn/SignIn.jsx"
+      "path": "/SignIn",
+      "component": "SignIn"
     }
   ]
 }
