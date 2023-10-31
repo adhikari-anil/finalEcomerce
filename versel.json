@@ -1,0 +1,33 @@
+{
+  "routes": [
+    { "handle": "filesystem" },
+    {
+      "src": "/",
+      "dest": "/forntend/src/App.jsx"
+    },
+    {
+      "src": "/",
+      "dest": "/forntend/src/module/HomeBody/Homepage.jsx"
+    },
+    {
+      "src": "/home",
+      "dest": "/forntend/src/module/HomeBody/Homepage.jsx"
+    },
+    {
+      "src": "/SignUp",
+      "dest": "/forntend/src/module/auth/SignUp/SignUp.jsx"
+    },
+    {
+      "src": "/About",
+      "dest": "/forntend/src/module/About/About.jsx"
+    },
+    {
+      "src": "/Contact",
+      "dest": "/forntend/src/module/Contact/Contact.jsx"
+    },
+    {
+      "src": "/SignIn",
+      "dest": "/forntend/src/module/auth/SignIn/SignIn.jsx"
+    }
+  ]
+}
