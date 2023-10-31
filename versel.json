@@ -1,28 +1,28 @@
 {
   "routes": [
     {
-      "path": "/",
-      "component": "Homepage"
+      "src": "/",
+      "dest": "Homepage"
     },
     {
-      "path": "/home",
-      "component": "Homepage"
+      "src": "/home",
+      "dest": "Homepage"
     },
     {
-      "path": "/SignUp",
-      "component": "SignUp"
+      "src": "/SignUp",
+      "dest": "SignUp"
     },
     {
-      "path": "/About",
-      "component": "About"
+      "src": "/About",
+      "dest": "About"
     },
     {
-      "path": "/Contact",
-      "component": "Contact"
+      "src": "/Contact",
+      "dest": "Contact"
     },
     {
-      "path": "/SignIn",
-      "component": "SignIn"
+      "src": "/SignIn",
+      "dest": "SignIn"
     }
   ]
 }
